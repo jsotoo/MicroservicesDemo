@@ -21,7 +21,7 @@ docker run --rm -it -v ${PWD}:"/Microservices.Docker.Api" mcr.microsoft.com/dotn
 #   rm world.txt
 #   exit
 dotnet publish
-dotnet .\bin\Release\publish\net8.0\Microservices.Docker.API.dll  
+ dotnet .\bin\Release\net8.0\publish\Microservices.Docker.API.dll
 
 - Run Api from container
 docker run --rm -it -v ${PWD}:"/Microservices.Docker.Api" mcr.microsoft.com/dotnet/aspnet:8.0
@@ -58,7 +58,7 @@ dotnet publish
 $sufix="microserviceseac"
 $rg="rg-$sufix"
 $acr="acr$sufix"
-$acrserver = "$acr.azurecr.io"
+$acrserver = "acr.azurecr.io"
 
 - Build docker image
 docker build -t "$acrserver/generator" .

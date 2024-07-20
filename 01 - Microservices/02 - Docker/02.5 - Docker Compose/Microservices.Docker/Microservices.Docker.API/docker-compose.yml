@@ -1,5 +1,3 @@
-version: '3.7'
-
 services: 
     generator:
         build: 
@@ -7,8 +5,16 @@ services:
         image: acrmicroserviceseac.azurecr.io/generator:1.0.0.1
         ports: 
             - "8085:8080"
+        networks: 
+            - backend
     mail:
         image: mailhog/mailhog
         ports: 
             - "8025:8025"
             - "1025:1025"
+        networks: 
+            - backend
+networks:
+  backend:
+    name: backend
+    driver: bridge
