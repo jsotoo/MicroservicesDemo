@@ -1,0 +1,38 @@
+﻿@using Net.Microservices.CleanArchitecture.Presentation.Web
+@using Net.Microservices.CleanArchitecture.Presentation.Web.Controllers
+@using Net.Microservices.CleanArchitecture.Presentation.Web.ViewModels
+@using Net.Microservices.CleanArchitecture.Presentation.Web.RazorComponents
+@using Net.Microservices.CleanArchitecture.Infrastructure.Resources
+@using Net.Microservices.CleanArchitecture.Common
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using System.Text.Encodings.Web
+@using Net.Microservices.CleanArchitecture.Presentation.Framework.Components
+@using Net.Microservices.CleanArchitecture.Presentation.Framework
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Http
+@using Microsoft.JSInterop
+@using System.Net.Http
+@using Net.Microservices.CleanArchitecture.Core.Application
+@using Blazored;
+@using Blazored.Modal;
+@using NEvaldas.Blazor.Select2
+@using Microsoft.AspNetCore.Authorization
+@using Net.Microservices.CleanArchitecture.Core.Application.Authorization
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@using Blazored.Toast.Configuration
+@using Net.Microservices.CleanArchitecture.Core.Domain
+@using Net.Microservices.CleanArchitecture.Presentation.Web.Helpers
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Net.Microservices.CleanArchitecture.Presentation.Framework
+@addTagHelper *, Net.Microservices.CleanArchitecture.Presentation.Web
+
+
+@inject ILocalizationService L
+@inject IAuthenticatedUserService UserService

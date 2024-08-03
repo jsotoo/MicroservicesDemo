@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <UserSecretsId>8018e338-382a-47fc-b6e7-540e5506ae3f</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="logs\**" />
+    <Content Remove="logs\**" />
+    <EmbeddedResource Remove="logs\**" />
+    <None Remove="logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="blazor-dragdrop" Version="2.4.0" />
+    <PackageReference Include="BlazorAnimate" Version="3.0.0" />
+    <PackageReference Include="Blazored.FluentValidation" Version="2.1.0" />
+    <PackageReference Include="Blazored.Modal" Version="7.1.0" />
+    <PackageReference Include="DataJuggler.Blazor.FileUpload" Version="7.0.6" />
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Forms" Version="7.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.JSInterop" Version="7.0.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.2" />
+    <PackageReference Include="Toolbelt.Blazor.LocalizedDataAnnotationsValidator" Version="1.0.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Net.Microservices.CleanArchitecture.Core.Application\Net.Microservices.CleanArchitecture.Core.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Net.Microservices.CleanArchitecture.Infrastructure.Resources\Net.Microservices.CleanArchitecture.Infrastructure.Resources.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Net.Microservices.CleanArchitecture.Infrastructure.Shared\Net.Microservices.CleanArchitecture.Infrastructure.Shared.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Net.Microservices.CleanArchitecture.Infrastructure\Net.Microservices.CleanArchitecture.Infrastructure.csproj" />
+    <ProjectReference Include="..\Net.Microservices.CleanArchitecture.Presentation.Framework\Net.Microservices.CleanArchitecture.Presentation.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+</Project>

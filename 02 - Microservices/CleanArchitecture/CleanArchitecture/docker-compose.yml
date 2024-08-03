@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  netmicroservicescleanarchitecture.app:    
+    image: ${DOCKER_REGISTRY-}netmicroservicescleanarchitecture-app
+    build:
+      context: Source
+      dockerfile: Presentation/Net.Microservices.CleanArchitecture.Presentation.Web/Dockerfile
+    ports:
+    - '8001:80'    
+    networks:
+    - netmicroservicescleanarchitecturedev
+    restart: on-failure  
+networks:
+  netmicroservicescleanarchitecturedev:
+    external: false
+    name: netmicroservicescleanarchitecturedev
