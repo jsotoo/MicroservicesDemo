@@ -25,8 +25,8 @@ builder.Services.AddSingleton<IBookService, BookService>();
 ////////////////////////////////// COSMODB ////////////////////////////////////////////////////
 builder.Services.AddDbContext<OrderNoSqlContext>(opt =>
 {
-    opt.UseCosmos("https://usrsqlcosmopersistence.documents.azure.com:443/",
-        "PzHoc7PVOr9t6kKnFpTuuHShtDnq8UJOrycpEljfWmPYcfEt9rJzsngWbPIwQxVUBejanbbWVNviSHZ7FKzjgg==",
+    opt.UseCosmos("https://usrcosmosdbeac.documents.azure.com:443/",
+        "4gNExXHF86gR6skEtLrh2TpK4RJKE05FUi5Y9eVRAyVuvcA2wPngctKq6BDbUPCMPNMH66VhkRazACDb8O4qmA==",
         databaseName: "OrdersDB");
 });
 builder.Services.AddScoped<IOrderNoSqlRepository, OrderNoSqlRepository>();
