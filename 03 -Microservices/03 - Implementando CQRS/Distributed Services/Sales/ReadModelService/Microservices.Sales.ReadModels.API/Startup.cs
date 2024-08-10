@@ -1,5 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using EasyNetQ;
+using EasyNetQ.Consumer;
+using EasyNetQ.Topology;
 using Microservices.Infrastructure.Crosscutting;
 using Microservices.Infrastructure.Crosscutting.Util;
 using Microservices.Infrastructure.MessageBus;
@@ -13,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using StackExchange.Redis;
 
 namespace Microservices.Sales.ReadModels.API
 {
@@ -69,35 +75,50 @@ namespace Microservices.Sales.ReadModels.API
 
         private void ConfigureHandlers()
         {
-            var redis = StackExchange.Redis.ConnectionMultiplexer.Connect("localhost");
-            var brandView = new OrderView(new RedisReadModelRepository<OrderDto>(redis.GetDatabase()));
+            var redis = ConnectionMultiplexer.Connect("localhost");
+            var brandView = new OrderView(new RedisReadModelRepository<OrderDto>(redis.GetDatabase(), new RabbitMqBus(RabbitHutch.CreateBus("host=localhost"))));
             ServiceLocator.BrandView = brandView;
+            ServiceLocator.ProductView = new ProductView();
 
             var eventMappings = new EventHandlerDiscovery()
                             .Scan(brandView)
                             .Handlers;
 
-            var messageBusEndPoint = "Microservices_Sales_ReadModels_API";
-            var topicFilter = "Microservices.Sales.Infrastructure.Events";
+            var messageBusEndPoint = "Sales.Read";
+            var topicFilter = "Sales.Events";
+            var exchangeName = "Sales";
 
             var b = RabbitHutch.CreateBus("host=localhost");
-
-            b.Subscribe<PublishedMessage>(messageBusEndPoint,
-            m =>
+            var advancedBus = b.Advanced;
+            var exchange = advancedBus.ExchangeDeclare(exchangeName, ExchangeType.Topic, durable: true, autoDelete: false);
+            var queue = advancedBus.QueueDeclare(messageBusEndPoint);
+            advancedBus.Bind(exchange, queue, topicFilter);
+                        
+            advancedBus.Consume<PublishedMessage>(queue, async (imessage, info) =>
             {
-                EventHandlerData eventHandlerData;
-                var messageType = Type.GetType(m.MessageTypeName);
-                var handlerFound = eventMappings.TryGetValue(messageType.Name, out eventHandlerData);
-                if (handlerFound)
+                    var message = imessage.Body;
+                    var messageType = Type.GetType(message.MessageTypeName);
+                if (messageType != null)
                 {
-                    var @event = JsonConvert.DeserializeObject(m.SerialisedMessage, eventHandlerData.TypeParameter);
-                    eventHandlerData.AggregateHandler.AsDynamic().ApplyEvent(@event, ((Event)@event).Version);
+                    EventHandlerData eventHandlerData;
+                    var handlerFound = eventMappings.TryGetValue(messageType.Name, out eventHandlerData);
+                    if (handlerFound)
+                    {
+                        var @event = JsonConvert.DeserializeObject(message.SerializedMessage, eventHandlerData.TypeParameter);
+                        Console.WriteLine("Start Process - " + messageType.Name);
+                        eventHandlerData.AggregateHandler.AsDynamic().ApplyEvent(@event, ((Event)@event).Version);
+                        Console.WriteLine("End Process - " + messageType.Name);
+                    }
                 }
-            },
-            q => q.WithTopic(topicFilter));
+               
+            }
+            //, opt =>
+            //{
+            //    opt.WithPrefetchCount(1);
+            //}
+            );
 
             var bus = new RabbitMqBus(b);
-
             ServiceLocator.Bus = bus;
         }
     }

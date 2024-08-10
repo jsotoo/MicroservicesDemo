@@ -9,7 +9,7 @@ namespace Microservices.Infrastructure.Repository
     {
         IEnumerable<T> GetAll();
         T Get(Guid id);
-        void Update(T t);
-        void Insert(T t);
+        void Update(T t,Event e = null);
+        void Insert(T t, Event e = null);
     }
 }

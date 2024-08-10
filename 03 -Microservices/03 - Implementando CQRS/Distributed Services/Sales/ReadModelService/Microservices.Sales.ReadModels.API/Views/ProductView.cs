@@ -1,10 +1,11 @@
-﻿using Microservices.Products.ReadModels.Client;
+﻿using Microservices.Products.Infrastructure.Dto;
+using Microservices.Products.ReadModels.Client;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Microservices.Sales.API.MicroServices.Products.View
+namespace Microservices.Sales.ReadModels.API.Views
 {
     public class ProductView
     {
@@ -15,26 +16,32 @@ namespace Microservices.Sales.API.MicroServices.Products.View
             _productsMaterializedView = productsMaterializedView;            
         }
 
-        public ProductView() : this(new ProductsMaterializedView("Sales.Write.Notifications")) { }
+        public ProductView() : this(new ProductsMaterializedView("Sales.Read.Notifications")) { }
 
-        public IEnumerable<Domain.Product> GetAll()
+        public IEnumerable<ProductDto> GetAll()
         {
-            return _productsMaterializedView.GetProducts().Select(p => new Domain.Product
+            return _productsMaterializedView.GetProducts().Select(product => new ProductDto
             {
-                Id = p.Id,
-                Price = p.Price
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                DisplayName = product.DisplayName,
+                Price = product.Price
             }); 
         }
         
 
-        public Domain.Product GetById(Guid id)
+        public ProductDto GetById(Guid id)
         {
             var product = _productsMaterializedView.GetById(id);
             if (product != null)
             {
-                return new Domain.Product
+                return new ProductDto
                 {
                     Id = product.Id,
+                    Name = product.Name,
+                    Description = product.Description,
+                    DisplayName = product.DisplayName,
                     Price = product.Price
                 };
             }            

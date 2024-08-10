@@ -1,4 +1,5 @@
-﻿using Microservices.Infrastructure.Crosscutting.Util;
+﻿using EasyNetQ;
+using Microservices.Infrastructure.Crosscutting.Util;
 using Microservices.Infrastructure.MessageBus;
 using Microservices.Products.Infrastructure.Dto;
 using System;
@@ -11,21 +12,19 @@ using System.Threading;
 
 namespace Microservices.Products.ReadModels.Client
 {
-    public class ProductsView : IProductsView
+    public class ProductsMaterializedView : IProductsMaterializedView
     {
         private const string ProductsServiceUrl = "https://localhost:44339/api/";
 
-        private static ConcurrentDictionary<Guid, ProductDto> products = new ConcurrentDictionary<Guid, ProductDto>();
+        private ConcurrentDictionary<Guid, ProductDto> products = new ConcurrentDictionary<Guid, ProductDto>();
 
-        static ProductsView()
+        public ProductsMaterializedView(string messageBusEndPoint)
         {
             InitializeProducts();
 
-            var ProductsEventListener = new TransientSubscriber(
-                "Products_client_productview_" + Assembly.GetEntryAssembly().FullName.Split(',').FirstOrDefault(),
-                "Microservices.Products.Infrastructure.Events",
-                () =>
+            var ProductsEventListener = new TransientSubscriber("Notifications", messageBusEndPoint, "Products.Notifications",(imessage, info) =>
                 {
+                    string m = messageBusEndPoint;
                     ResetProducts();
                     InitializeProducts();
                 });
@@ -80,7 +79,7 @@ namespace Microservices.Products.ReadModels.Client
             ResetProducts();
         }
 
-        private static void InitializeProducts()
+        private void InitializeProducts()
         {
             var result = Try.To(LoadProducts)
                 .OnFailedAttempt(() => Thread.Sleep(1000))
@@ -91,7 +90,7 @@ namespace Microservices.Products.ReadModels.Client
                 throw new ApplicationException("Failed to load the Products from the Products service.", result.Exception);
         }
 
-        private static void LoadProducts()
+        private void LoadProducts()
         {
             var apiClient = new ApiClient();
             var apiResponse = apiClient.LoadMany<ProductDto>(ProductsServiceUrl + "products");
@@ -100,7 +99,7 @@ namespace Microservices.Products.ReadModels.Client
                 products.TryAdd(product.Id, product);
         }
 
-        private static void ResetProducts()
+        private void ResetProducts()
         {
             products = new ConcurrentDictionary<Guid, ProductDto>();
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using EasyNetQ;
+using EasyNetQ.Topology;
 using EventStore.ClientAPI;
 using Microservices.Infrastructure.Crosscutting;
 using Microservices.Infrastructure.Crosscutting.Util;
@@ -11,7 +12,6 @@ using Microservices.Infrastructure.MessageBus;
 using Microservices.Infrastructure.Repository;
 using Microservices.Sales.API.MicroServices.Orders.Handlers;
 using Microservices.Sales.API.MicroServices.Products.View;
-using Microservices.Sales.API.Products.Handlers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -77,41 +77,16 @@ namespace Microservices.Sales.API
         }
 
         private void ConfigureHandlers()
-        {
-            var b = RabbitHutch.CreateBus("host=localhost");
-            var bus = new RabbitMqBus(b);
+        {   
+            var bus = new RabbitMqBus(RabbitHutch.CreateBus("host=localhost"));
             ServiceLocator.Bus = bus;
 
-            var messageBusEndPoint = "Microservices_Sales_API";
-            var topicFilter = "Microservices.Products.Infrastructure.Events";
-
-            var eventStorePort = 1113;
-
-            var eventStoreConnection = EventStoreConnection.Create(new IPEndPoint(IPAddress.Loopback, eventStorePort));
+            var eventStoreConnection = EventStoreConnection.Create(new IPEndPoint(IPAddress.Loopback, 1113));
             eventStoreConnection.ConnectAsync().Wait();
             var repository = new EventStoreRepository(eventStoreConnection, bus);
-            
+
             ServiceLocator.OrderCommands = new OrderCommandHandlers(repository);
-            ServiceLocator.ProductView = new ProductView();
-
-            var eventMappings = new EventHandlerDiscovery()
-                .Scan(new ProductEventsHandler())
-                .Handlers;
-
-            b.Subscribe<PublishedMessage>(messageBusEndPoint,
-            m =>
-            {
-                EventHandlerData eventHandlerData;
-                var messageType = Type.GetType(m.MessageTypeName);
-                var handlerFound = eventMappings.TryGetValue(messageType.Name, out eventHandlerData);
-                if (handlerFound)
-                {
-                    var @event = JsonConvert.DeserializeObject(m.SerialisedMessage, eventHandlerData.TypeParameter);
-                    eventHandlerData.AggregateHandler.AsDynamic().ApplyEvent(@event, ((Event)@event).Version);
-                }
-            },
-            q => q.WithTopic(topicFilter));
-
+            ServiceLocator.ProductView = new ProductView();              
         }
     }
 }

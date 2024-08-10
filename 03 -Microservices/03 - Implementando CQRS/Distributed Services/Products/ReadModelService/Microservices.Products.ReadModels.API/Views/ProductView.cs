@@ -3,6 +3,7 @@ using Microservices.Infrastructure.Crosscutting.Exceptions;
 using Microservices.Infrastructure.Repository;
 using Microservices.Products.Infrastructure.Dto;
 using Microservices.Products.Infrastructure.Events;
+using Microservices.Products.Infrastructure.Notifications;
 using System;
 using System.Collections.Generic;
 
@@ -50,7 +51,7 @@ namespace Microservices.Products.ReadModels.API.Views
                 Version = e.Version,
                 DisplayName = string.Format(displayFormat, e.Name, e.Description),
             };
-            repository.Insert(dto);
+            repository.Insert(dto,new ProductReadModelUpdatedEvent(e.Id));
         }
         public void Apply(ProductNameChanged e)
         {
@@ -58,7 +59,8 @@ namespace Microservices.Products.ReadModels.API.Views
             product.Name = e.NewName;
             product.Version = e.Version;
             product.DisplayName = string.Format(displayFormat, product.Name, product.Description);
-            repository.Update(product);
+            repository.Update(product, new ProductReadModelUpdatedEvent(e.Id));
+            Console.WriteLine("ProductNameChanged - " + product.ToString());
         }
         public void Apply(ProductDescriptionChanged e)
         {
@@ -66,14 +68,16 @@ namespace Microservices.Products.ReadModels.API.Views
             product.Description = e.NewDescription;
             product.Version = e.Version;
             product.DisplayName = string.Format(displayFormat, product.Name, product.Description);
-            repository.Update(product);
+            repository.Update(product, new ProductReadModelUpdatedEvent(e.Id));
+            Console.WriteLine("ProductDescriptionChanged - " + product.ToString());
         }
         public void Apply(ProductPriceChanged e)
         {
             var product = GetById(e.Id);
             product.Price = e.NewPrice;
             product.Version = e.Version;
-            repository.Update(product);
+            repository.Update(product, new ProductReadModelUpdatedEvent(e.Id));
+            Console.WriteLine("ProductPriceChanged - " + product.ToString());
         }
     }
 }

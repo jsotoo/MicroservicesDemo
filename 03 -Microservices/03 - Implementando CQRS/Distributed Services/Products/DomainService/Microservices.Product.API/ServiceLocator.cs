@@ -1,4 +1,5 @@
-﻿using Microservices.Infrastructure.MessageBus;
+﻿using EasyNetQ;
+using Microservices.Infrastructure.MessageBus;
 using Microservices.Products.API.MicroServices.Products.Handlers;
 
 namespace Microservices.Products.API

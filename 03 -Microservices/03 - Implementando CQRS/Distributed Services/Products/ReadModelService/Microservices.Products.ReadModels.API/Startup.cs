@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyNetQ;
+using EasyNetQ.Topology;
 using Microservices.Infrastructure.Crosscutting;
 using Microservices.Infrastructure.Crosscutting.Util;
 using Microservices.Infrastructure.MessageBus;
@@ -76,36 +77,47 @@ namespace Microservices.Products.ReadModels.API
         }
 
         private void ConfigureHandlers()
-        {
+        {            
             var redis = ConnectionMultiplexer.Connect("localhost");
-            var productView = new ProductView(new RedisReadModelRepository<ProductDto>(redis.GetDatabase()));
+            var productView = new ProductView(new RedisReadModelRepository<ProductDto>(redis.GetDatabase(), new RabbitMqBus(RabbitHutch.CreateBus("host=localhost"))));
             ServiceLocator.ProductView = productView;
 
             var eventMappings = new EventHandlerDiscovery()
                                 .Scan(productView)
                                 .Handlers;
 
-            var subscriptionName = "Microservices_Products_ReadModels_API";
-            var topicFilter1 = "Microservices.Products.Infrastructure.Events";
+            var messageBusEndPoint = "Products.Read";
+            var topicFilter = "Products.Events";
+            var exchangeName = "Products";
 
             var b = RabbitHutch.CreateBus("host=localhost");
+            var advancedBus = b.Advanced;
+            var exchange = advancedBus.ExchangeDeclare(exchangeName, ExchangeType.Topic, durable: true, autoDelete: false);
+            var queue = advancedBus.QueueDeclare(messageBusEndPoint);
+            advancedBus.Bind(exchange, queue, topicFilter);
 
-            b.Subscribe<PublishedMessage>(subscriptionName,
-            m =>
+            advancedBus.Consume<PublishedMessage>(queue, (imessage, info) =>
             {
-                EventHandlerData eventHandlerData;
-                var messageType = Type.GetType(m.MessageTypeName);
-                var handlerFound = eventMappings.TryGetValue(messageType.Name, out eventHandlerData);
-                if (handlerFound)
-                {
-                    var @event = JsonConvert.DeserializeObject(m.SerialisedMessage, eventHandlerData.TypeParameter);
-                    eventHandlerData.AggregateHandler.AsDynamic().ApplyEvent(@event, ((Event)@event).Version);
+                var message = imessage.Body;
+                var messageType = Type.GetType(message.MessageTypeName);
+                if (messageType != null)
+                {                    
+                    EventHandlerData eventHandlerData;
+                    var handlerFound = eventMappings.TryGetValue(messageType.Name, out eventHandlerData);
+                    if (handlerFound)
+                    {
+                        var @event = JsonConvert.DeserializeObject(message.SerializedMessage, eventHandlerData.TypeParameter);
+                        //Console.WriteLine("Start Process - " + messageType.Name);
+                        eventHandlerData.AggregateHandler.AsDynamic().ApplyEvent(@event, ((Event)@event).Version);
+                        //Console.WriteLine("End Process - " + messageType.Name);
+                    }
                 }
-            },
-            q => q.WithTopic(topicFilter1));
-
+            }, opt =>
+            {
+                opt.WithPrefetchCount(1);
+            });
+            
             var bus = new RabbitMqBus(b);
-
             ServiceLocator.Bus = bus;
         }
     }

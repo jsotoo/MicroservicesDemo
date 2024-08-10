@@ -8,18 +8,12 @@ namespace Microservices.Sales.API.MicroServices.Orders.Handlers
 {
     public class OrderCommandHandlers
     {
-        private readonly ProductView productView;
         private readonly IRepository repository;
+              
 
         public OrderCommandHandlers(IRepository repository)
-            : this(repository, new ProductsView())
         {
-        }
-
-        public OrderCommandHandlers(IRepository repository, IProductsView ProductsProductsView)
-        {
-            this.repository = repository;
-            this.productView = new ProductView(ProductsProductsView);
+            this.repository = repository;            
         }
 
         public void Handle(StartNewOrder message)
@@ -43,7 +37,7 @@ namespace Microservices.Sales.API.MicroServices.Orders.Handlers
             {
                 try
                 {
-                    productView.GetById(productId);
+                    ServiceLocator.ProductView.GetById(productId);
                 }
                 catch (Exception)
                 {

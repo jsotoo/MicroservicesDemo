@@ -20,13 +20,13 @@ namespace Microservices.Infrastructure.Repository
         private const int WritePageSize = 500;
         private const int ReadPageSize = 500;
 
-        private static readonly JsonSerializerSettings serializationSettings;
-        private readonly IEventStoreConnection eventStoreConnection;
-        private readonly IMessageBus bus;
+        private static readonly JsonSerializerSettings _serializationSettings;
+        private readonly IEventStoreConnection _eventStoreConnection;
+        private readonly IMessageBus _bus;
 
         static EventStoreRepository()
         {
-            serializationSettings = new JsonSerializerSettings
+            _serializationSettings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.None
             };
@@ -34,8 +34,8 @@ namespace Microservices.Infrastructure.Repository
 
         public EventStoreRepository(IEventStoreConnection eventStoreConnection, IMessageBus bus)
         {
-            this.eventStoreConnection = eventStoreConnection;
-            this.bus = bus;
+            _eventStoreConnection = eventStoreConnection;
+            _bus = bus;
         }
 
         public TAggregate GetById<TAggregate>(Guid id) where TAggregate : Aggregate
@@ -64,7 +64,7 @@ namespace Microservices.Infrastructure.Repository
                                     ? ReadPageSize
                                     : version - sliceStart + 1;
 
-                currentSlice = await eventStoreConnection.ReadStreamEventsForwardAsync(streamName, sliceStart, sliceCount, false);
+                currentSlice = await _eventStoreConnection.ReadStreamEventsForwardAsync(streamName, sliceStart, sliceCount, false);
 
                 if (currentSlice.Status == SliceReadStatus.StreamNotFound)
                     throw new AggregateNotFoundException(id, typeof(TAggregate));
@@ -125,11 +125,11 @@ namespace Microservices.Infrastructure.Repository
 
             if (eventsToSave.Count < WritePageSize)
             {
-                await eventStoreConnection.AppendToStreamAsync(streamName, expectedVersion, eventsToSave);
+                await _eventStoreConnection.AppendToStreamAsync(streamName, expectedVersion, eventsToSave);
             }
             else
             {
-                var transaction = await eventStoreConnection.StartTransactionAsync(streamName, expectedVersion);
+                var transaction = await _eventStoreConnection.StartTransactionAsync(streamName, expectedVersion);
 
                 var position = 0;
                 while (position < eventsToSave.Count)
@@ -142,11 +142,11 @@ namespace Microservices.Infrastructure.Repository
                 await transaction.CommitAsync();
             }
 
-            if (bus != null)
+            if (_bus != null)
             {
                 foreach (var e in eventsToPublish)
                 {
-                    bus.Publish(e);
+                    _bus.Publish(e);
                 }
             }
 
@@ -161,7 +161,7 @@ namespace Microservices.Infrastructure.Repository
 
         private static EventData ToEventData(Guid eventId, object @event, IDictionary<string, object> headers)
         {
-            var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(@event, serializationSettings));
+            var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(@event, _serializationSettings));
 
             var eventHeaders = new Dictionary<string, object>(headers)
             {
@@ -169,7 +169,7 @@ namespace Microservices.Infrastructure.Repository
                     EventClrTypeHeader, @event.GetType().AssemblyQualifiedName
                 }
             };
-            var metadata = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(eventHeaders, serializationSettings));
+            var metadata = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(eventHeaders, _serializationSettings));
             var typeName = @event.GetType().Name;
 
             return new EventData(eventId, typeName, true, data, metadata);

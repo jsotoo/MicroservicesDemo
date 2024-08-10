@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Microservices.Products.ReadModels.Client
 {
-    public interface IProductsView
+    public interface IProductsMaterializedView
     {
         ProductDto GetById(Guid id);
         IEnumerable<ProductDto> GetProducts();

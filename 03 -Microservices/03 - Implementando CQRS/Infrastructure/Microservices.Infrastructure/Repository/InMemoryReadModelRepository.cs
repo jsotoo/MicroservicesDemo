@@ -18,12 +18,12 @@ namespace Microservices.Infrastructure.Repository
             return items.Values;
         }
 
-        public void Insert(T t)
+        public void Insert(T t, Event e = null)
         {
             items.Add(t.Id, t);
         }
 
-        public void Update(T t)
+        public void Update(T t, Event e = null)
         {
             items[t.Id] = t;
         }

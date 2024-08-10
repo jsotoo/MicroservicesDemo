@@ -38,14 +38,13 @@ namespace Microservices.Sales.ReadModels.API.Views
         }
 
         public void Apply(OrderPlaced e)
-        {
-            var productView = new ProductsView();
-            var product = productView.GetById(e.ProductId);
+        {            
+            var product = ServiceLocator.ProductView.GetById(e.ProductId);
             var dto = new OrderDto
             {
                 Id = e.Id,
                 Quantity = e.Quantity,
-                ProductName = product.Description,
+                ProductName = product.DisplayName,
                 Version = e.Version,
                 IsPaidFor = false
             };

@@ -7,5 +7,6 @@ namespace Microservices.Sales.ReadModels.API
     {
         public static IMessageBus Bus { get; set; }
         public static OrderView BrandView { get; set; }
+        public static ProductView ProductView { get; set; }
     }
 }

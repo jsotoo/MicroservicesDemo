@@ -77,8 +77,7 @@ namespace Microservices.Products.API
         {
             var bus = new RabbitMqBus(RabbitHutch.CreateBus("host=localhost"));
             ServiceLocator.Bus = bus;
-
-            //Should get this from a config setting instead of hardcoding it.
+                        
             var eventStoreConnection = EventStoreConnection.Create(new IPEndPoint(IPAddress.Loopback, 1113));
             eventStoreConnection.ConnectAsync().Wait();
             var repository = new EventStoreRepository(eventStoreConnection, bus);
