@@ -1,0 +1,126 @@
+2024-08-24 19:40:50.3177|1|Info|LoggingConfiguration|Logging to D:\GitHub\microservices202407\04 - Microservices\NServiceBus\05 - RetailDemo\.logs\servicecontrol\logfile.2024-08-24.txt with LogLevel 'Info'
+2024-08-24 19:40:50.4320|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-08-24 19:40:51.7267|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-08-24 19:40:52.4745|1|Info|ServiceControl.Transports.TransportManifestLibrary|Found transport manifest for Learning Transport (Non-Production)
+2024-08-24 19:42:17.8812|1|Info|LoggingConfiguration|Logging to D:\GitHub\microservices202407\04 - Microservices\NServiceBus\05 - RetailDemo\.logs\servicecontrol\logfile.2024-08-24.txt with LogLevel 'Info'
+2024-08-24 19:42:17.9896|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-08-24 19:42:18.1072|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-08-24 19:44:54.8025|1|Info|LoggingConfiguration|Logging to D:\GitHub\microservices202407\04 - Microservices\NServiceBus\05 - RetailDemo\.logs\servicecontrol\logfile.2024-08-24.txt with LogLevel 'Info'
+2024-08-24 19:44:54.9211|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-08-24 19:44:55.0698|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-08-24 19:45:32.2284|1|Info|LoggingConfiguration|Logging to D:\GitHub\microservices202407\04 - Microservices\NServiceBus\05 - RetailDemo\.logs\servicecontrol\logfile.2024-08-24.txt with LogLevel 'Info'
+2024-08-24 19:45:32.2946|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-08-24 19:45:32.3848|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-08-24 19:45:43.9789|1|Info|LoggingConfiguration|Logging to D:\GitHub\microservices202407\04 - Microservices\NServiceBus\05 - RetailDemo\.logs\servicecontrol\logfile.2024-08-24.txt with LogLevel 'Info'
+2024-08-24 19:45:44.0502|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-08-24 19:45:44.1427|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-08-24 19:45:56.0842|1|Info|LoggingConfiguration|Logging to D:\GitHub\microservices202407\04 - Microservices\NServiceBus\05 - RetailDemo\.logs\servicecontrol\logfile.2024-08-24.txt with LogLevel 'Info'
+2024-08-24 19:45:56.1724|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-08-24 19:45:56.2811|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-08-24 19:45:56.6041|1|Info|ServiceControl.Transports.TransportManifestLibrary|Found transport manifest for Learning Transport (Non-Production)
+2024-08-24 19:48:22.1292|1|Info|LoggingConfiguration|Logging to D:\GitHub\microservices202407\04 - Microservices\NServiceBus\05 - RetailDemo\.logs\servicecontrol\logfile.2024-08-24.txt with LogLevel 'Info'
+2024-08-24 19:48:22.2073|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-08-24 19:48:22.2978|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-08-24 19:48:22.5825|1|Info|ServiceControl.Transports.TransportManifestLibrary|Found transport manifest for Learning Transport (Non-Production)
+2024-08-24 19:48:33.7637|1|Info|LoggingConfiguration|Logging to D:\GitHub\microservices202407\04 - Microservices\NServiceBus\05 - RetailDemo\.logs\servicecontrol\logfile.2024-08-24.txt with LogLevel 'Info'
+2024-08-24 19:48:33.8322|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-08-24 19:48:33.9256|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-08-24 19:48:34.2085|1|Info|ServiceControl.Transports.TransportManifestLibrary|Found transport manifest for Learning Transport (Non-Production)
+2024-08-24 19:50:57.8883|1|Info|LoggingConfiguration|Logging to D:\GitHub\microservices202407\04 - Microservices\NServiceBus\05 - RetailDemo\.logs\servicecontrol\logfile.2024-08-24.txt with LogLevel 'Info'
+2024-08-24 19:50:58.0126|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-08-24 19:50:58.1468|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-08-24 19:51:52.9802|1|Info|LoggingConfiguration|Logging to D:\GitHub\microservices202407\04 - Microservices\NServiceBus\05 - RetailDemo\.logs\servicecontrol\logfile.2024-08-24.txt with LogLevel 'Info'
+2024-08-24 19:51:53.0675|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-08-24 19:51:53.1615|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-08-24 19:51:53.4619|1|Info|ServiceControl.Transports.TransportManifestLibrary|Found transport manifest for Learning Transport (Non-Production)
+2024-08-24 19:51:53.7140|1|Info|ServiceControl.Persistence.PersistenceManifestLibrary|Found persistence manifest for RavenDB
