@@ -1,0 +1,44 @@
+2024-04-26 18:46:02.2990|1|Info|LoggingConfiguration|Logging to D:\GitHub\Microservices202404\04 - Microservices\NServiceBus\08 - RetailDemo\.logs\servicecontrol-audit\logfile.2024-04-26.txt with LogLevel 'Info'
+2024-04-26 18:46:02.3569|1|Info|ServiceControl.Audit.Infrastructure.Settings.Settings|No settings found for audit log queue to import, default name will be used
+2024-04-26 18:46:03.3956|1|Info|ServiceControl.Audit.Persistence.PersistenceManifestLibrary|Found persistence manifest for In-memory
+2024-04-26 18:46:03.4633|1|Info|ServiceControl.Audit.Infrastructure.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Audit Version:       5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period:             10.00:00:00
+Forwarding Audit Messages:          False
+ServiceControl Logging Level:       Info
+Transport Customization:            LearningTransport,
+Persistence Customization:          InMemory,
+Persistence:                        InMemory
+-------------------------------------------------------------
+2024-04-26 18:46:03.4829|1|Info|ServiceControl.Transports.TransportManifestLibrary|Found transport manifest for Learning Transport (Non-Production)
+2024-04-26 18:46:06.8758|1|Warn|NServiceBus.TransportExtensions|A connection string named 'NServiceBus/Transport' was found. Using named connection strings is discouraged. Instead, load the connection string in your code and pass the value to EndpointConfiguration.UseTransport().ConnectionString(connectionString).
+2024-04-26 18:46:06.9818|9|Info|ServiceControl.Audit.Auditing.AuditIngestion|Ensure started. Infrastructure starting
+2024-04-26 18:46:06.9938|9|Warn|NServiceBus.TransportExtensions|A connection string named 'NServiceBus/Transport' was found. Using named connection strings is discouraged. Instead, load the connection string in your code and pass the value to EndpointConfiguration.UseTransport().ConnectionString(connectionString).
+2024-04-26 18:46:06.9938|9|Warn|NServiceBus.TransportExtensions|A connection string named 'NServiceBus/Transport' was found. Using named connection strings is discouraged. Instead, load the connection string in your code and pass the value to EndpointConfiguration.UseTransport().ConnectionString(connectionString).
+2024-04-26 18:46:07.0145|9|Info|ServiceControl.Audit.Auditing.AuditIngestion|Ensure started. Infrastructure started
+2024-04-26 18:46:07.0636|7|Info|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2024-04-26 18:46:07.0636|7|Info|Microsoft.Hosting.Lifetime|Hosting environment: Production
+2024-04-26 18:46:07.0636|7|Info|Microsoft.Hosting.Lifetime|Content root path: D:\GitHub\Microservices202404\04 - Microservices\NServiceBus\08 - RetailDemo\PlatformTools\bin\Debug\net8.0\platform\servicecontrol\servicecontrol-audit-instance\
+2024-04-26 18:47:01.0589|1|Info|LoggingConfiguration|Logging to D:\GitHub\Microservices202404\04 - Microservices\NServiceBus\08 - RetailDemo\.logs\servicecontrol-audit\logfile.2024-04-26.txt with LogLevel 'Info'
+2024-04-26 18:47:01.1119|1|Info|ServiceControl.Audit.Infrastructure.Settings.Settings|No settings found for audit log queue to import, default name will be used
+2024-04-26 18:47:01.3513|1|Info|ServiceControl.Audit.Persistence.PersistenceManifestLibrary|Found persistence manifest for In-memory
+2024-04-26 18:47:01.3555|1|Info|ServiceControl.Audit.Infrastructure.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Audit Version:       5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period:             10.00:00:00
+Forwarding Audit Messages:          False
+ServiceControl Logging Level:       Info
+Transport Customization:            LearningTransport,
+Persistence Customization:          InMemory,
+Persistence:                        InMemory
+-------------------------------------------------------------
+2024-04-26 18:47:01.3790|1|Info|ServiceControl.Transports.TransportManifestLibrary|Found transport manifest for Learning Transport (Non-Production)
+2024-04-26 18:47:01.9060|1|Warn|NServiceBus.TransportExtensions|A connection string named 'NServiceBus/Transport' was found. Using named connection strings is discouraged. Instead, load the connection string in your code and pass the value to EndpointConfiguration.UseTransport().ConnectionString(connectionString).
+2024-04-26 18:47:02.0613|9|Info|ServiceControl.Audit.Auditing.AuditIngestion|Ensure started. Infrastructure starting
+2024-04-26 18:47:02.0761|9|Warn|NServiceBus.TransportExtensions|A connection string named 'NServiceBus/Transport' was found. Using named connection strings is discouraged. Instead, load the connection string in your code and pass the value to EndpointConfiguration.UseTransport().ConnectionString(connectionString).
+2024-04-26 18:47:02.0874|9|Warn|NServiceBus.TransportExtensions|A connection string named 'NServiceBus/Transport' was found. Using named connection strings is discouraged. Instead, load the connection string in your code and pass the value to EndpointConfiguration.UseTransport().ConnectionString(connectionString).
+2024-04-26 18:47:02.1071|9|Info|ServiceControl.Audit.Auditing.AuditIngestion|Ensure started. Infrastructure started
+2024-04-26 18:47:02.2000|7|Info|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2024-04-26 18:47:02.2000|7|Info|Microsoft.Hosting.Lifetime|Hosting environment: Production
+2024-04-26 18:47:02.2000|7|Info|Microsoft.Hosting.Lifetime|Content root path: D:\GitHub\Microservices202404\04 - Microservices\NServiceBus\08 - RetailDemo\PlatformTools\bin\Debug\net8.0\platform\servicecontrol\servicecontrol-audit-instance\

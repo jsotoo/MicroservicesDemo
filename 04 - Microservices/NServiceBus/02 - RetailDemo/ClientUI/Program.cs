@@ -19,6 +19,7 @@ namespace ClientUI
             Console.Title = "ClientUI";
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            endpointConfiguration.UseSerialization<XmlSerializer>();
             var routing = transport.Routing();
             routing.RouteToEndpoint(typeof(PlaceOrderCommand), "Sales");
 

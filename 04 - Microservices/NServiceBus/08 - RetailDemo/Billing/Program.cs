@@ -11,11 +11,12 @@ namespace Billing
             Console.Title = "Rabbit.Billing";
 
             var endpointConfiguration = new EndpointConfiguration("Rabbit.Billing");
+            endpointConfiguration.UseSerialization<XmlSerializer>();
 
             //var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
             var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-            transport.ConnectionString("host=localhost;username=test;password=test");
+            transport.ConnectionString("host=localhost;username=guest;password=guest");
             //transport.UsePublisherConfirms(true);            
             transport.UseConventionalRoutingTopology(QueueType.Quorum);
 

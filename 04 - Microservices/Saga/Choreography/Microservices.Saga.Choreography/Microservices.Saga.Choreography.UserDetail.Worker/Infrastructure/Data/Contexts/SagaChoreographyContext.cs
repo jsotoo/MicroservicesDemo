@@ -20,7 +20,7 @@ namespace Microservices.Saga.Choreography.UserDetail.Worker.Infrastructure.Data.
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=PE-LPALQ00769\\MSSQLSERVER2019;initial catalog=Microservices.Saga.Choreography;User ID=sa;Password=Password1234;");
+                optionsBuilder.UseSqlServer("Data Source=.,1434;initial catalog=Microservices.Saga.Choreography;User ID=sa;Password=Password1234;Encrypt=False;TrustServerCertificate=False;");
             }
         }
 

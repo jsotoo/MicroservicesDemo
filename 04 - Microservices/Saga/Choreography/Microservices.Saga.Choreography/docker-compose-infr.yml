@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+########################################################## MSSQL Server ##################################################################################
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 1434:1433 
+    environment:
+      - SA_PASSWORD=Password1234
+      - ACCEPT_EULA=Y
+    networks:
+      - backend
+########################################################## Rabbitmq ####################################################################################
+  rabbitmq:
+    image: rabbitmq:3.13.1-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest    
+    networks:
+      - backend
+########################################################## networks #######################################################################################################
+networks:
+  backend:
+    name: backend
+    driver: bridge
+

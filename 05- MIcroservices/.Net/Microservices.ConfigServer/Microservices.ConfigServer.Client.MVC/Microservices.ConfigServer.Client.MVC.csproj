@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>df801e7d-4430-4a2a-a0f1-a018c84fafb0</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Steeltoe.Discovery.Eureka" Version="3.2.7" />
+    <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="3.2.7" />
+  </ItemGroup>
+
+</Project>

@@ -11,6 +11,7 @@ namespace Billing
             Console.Title = "Billing";
 
             var endpointConfiguration = new EndpointConfiguration("Billing");
+            endpointConfiguration.UseSerialization<XmlSerializer>();
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 

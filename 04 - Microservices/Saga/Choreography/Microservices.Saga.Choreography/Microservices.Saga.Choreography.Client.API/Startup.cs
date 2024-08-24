@@ -31,6 +31,8 @@ namespace Microservices.Saga.Choreography.Client.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
             services.AddDbContext<SagaChoreographyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SagaChoreographyConnection")));
             services.AddTransient<IUserApplicationService,UserApplicationService>();
             services.AddTransient<IUserRepository, UserRepository>();
@@ -44,6 +46,8 @@ namespace Microservices.Saga.Choreography.Client.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();

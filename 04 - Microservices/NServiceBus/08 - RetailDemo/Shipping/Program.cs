@@ -11,12 +11,13 @@ namespace Shipping
             Console.Title = "Rabbit.Shipping";
 
             var endpointConfiguration = new EndpointConfiguration("Rabbit.Shipping");
+            endpointConfiguration.UseSerialization<XmlSerializer>();
 
             //var transport = endpointConfiguration.UseTransport<LearningTransport>();
             var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
 
             var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-            transport.ConnectionString("host=localhost;username=test;password=test");
+            transport.ConnectionString("host=localhost;username=guest;password=guest");
             //transport.UsePublisherConfirms(true);            
             transport.UseConventionalRoutingTopology(QueueType.Quorum);
 

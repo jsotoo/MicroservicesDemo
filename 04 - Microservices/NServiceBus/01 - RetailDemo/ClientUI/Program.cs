@@ -1,6 +1,7 @@
 ﻿
 using Commands;
 using NServiceBus;
+using NServiceBus.Serialization;
 using NServiceBus.Logging;
 using System.Net;
 
@@ -16,7 +17,8 @@ public class Program
     static async Task AsyncMain()
     {
         Console.Title = "ClientUI";
-        var endpointConfiguration = new EndpointConfiguration("HandleMessages"); //Nombre de referencia no es necesario que tenga el nombre de algun ensamblado
+        var endpointConfiguration = new EndpointConfiguration("HandleMessages"); //Nombre de referencia no es necesario que tenga el nombre de algun ensamblado        
+        endpointConfiguration.UseSerialization<XmlSerializer>();
 
         //Esta configuración define el transporte que NServiceBus usará para enviar y recibir mensajes.
         //Estamos utilizando el transporte de aprendizaje, que se incluye en la biblioteca principal de NServiceBus 

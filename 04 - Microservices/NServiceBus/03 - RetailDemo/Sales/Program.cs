@@ -11,6 +11,7 @@ namespace Sales
             Console.Title = "Sales";
 
             var endpointConfiguration = new EndpointConfiguration("Sales");
+            endpointConfiguration.UseSerialization<XmlSerializer>();
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 

@@ -11,6 +11,7 @@ namespace Shipping
             Console.Title = "Shipping";
 
             var endpointConfiguration = new EndpointConfiguration("Shipping");
+            endpointConfiguration.UseSerialization<XmlSerializer>();
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
             var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();

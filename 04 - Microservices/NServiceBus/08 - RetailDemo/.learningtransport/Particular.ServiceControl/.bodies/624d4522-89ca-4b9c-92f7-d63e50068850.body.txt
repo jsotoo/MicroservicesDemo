@@ -1,0 +1,1 @@
+{"HostId":"239e7df7-1094-ceb7-4dcd-679fd0f58353","CustomCheckId":"Audit Message Ingestion","Category":"ServiceControl.Audit Health","HasFailed":false,"FailureReason":null,"ReportedAt":"2024-04-26T16:46:06.9818006Z","EndpointName":"Particular.ServiceControl.Audit","Host":"DESKTOP-F2UAIGT"}

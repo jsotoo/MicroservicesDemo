@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>e9df5c35-a7a0-46f9-832c-4b5e71c94ae9</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Steeltoe.CircuitBreaker.Hystrix.MetricsStreamCore" Version="3.2.7" />
+    <PackageReference Include="Steeltoe.CircuitBreaker.HystrixCore" Version="3.2.7" />
+  </ItemGroup>
+
+</Project>

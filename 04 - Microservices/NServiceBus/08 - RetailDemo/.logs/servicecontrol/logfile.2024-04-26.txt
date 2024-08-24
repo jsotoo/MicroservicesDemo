@@ -1,0 +1,28 @@
+2024-04-26 18:46:02.1290|1|Info|LoggingConfiguration|Logging to D:\GitHub\Microservices202404\04 - Microservices\NServiceBus\08 - RetailDemo\.logs\servicecontrol\logfile.2024-04-26.txt with LogLevel 'Info'
+2024-04-26 18:46:02.1777|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-04-26 18:46:03.0182|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-04-26 18:46:03.4772|1|Info|ServiceControl.Transports.TransportManifestLibrary|Found transport manifest for Learning Transport (Non-Production)
+2024-04-26 18:46:03.7154|1|Info|ServiceControl.Persistence.PersistenceManifestLibrary|Found persistence manifest for RavenDB
+2024-04-26 18:47:01.0601|1|Info|LoggingConfiguration|Logging to D:\GitHub\Microservices202404\04 - Microservices\NServiceBus\08 - RetailDemo\.logs\servicecontrol\logfile.2024-04-26.txt with LogLevel 'Info'
+2024-04-26 18:47:01.1092|1|Info|ServiceBus.Management.Infrastructure.Settings.Settings|No settings found for error log queue to import, default name will be used
+2024-04-26 18:47:01.1675|1|Info|Particular.ServiceControl.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Version:             5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period (optional):  
+Error Retention Period:             10.00:00:00
+Ingest Error Messages:              True
+Forwarding Error Messages:          False
+ServiceControl Logging Level:       Info
+Selected Transport Customization:   LearningTransport
+-------------------------------------------------------------
+2024-04-26 18:47:01.3833|1|Info|ServiceControl.Transports.TransportManifestLibrary|Found transport manifest for Learning Transport (Non-Production)
+2024-04-26 18:47:01.4075|1|Info|ServiceControl.Persistence.PersistenceManifestLibrary|Found persistence manifest for RavenDB

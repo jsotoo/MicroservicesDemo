@@ -1,0 +1,14 @@
+2024-04-26 18:43:42.8337|1|Info|LoggingConfiguration|Logging to D:\GitHub\Microservices202404\04 - Microservices\NServiceBus\07 - RetailDemo\.logs\servicecontrol-audit\logfile.2024-04-26.txt with LogLevel 'Info'
+2024-04-26 18:43:42.8906|1|Info|ServiceControl.Audit.Infrastructure.Settings.Settings|No settings found for audit log queue to import, default name will be used
+2024-04-26 18:43:43.8555|1|Info|ServiceControl.Audit.Persistence.PersistenceManifestLibrary|Found persistence manifest for In-memory
+2024-04-26 18:43:43.9153|1|Info|ServiceControl.Audit.Infrastructure.Bootstrapper|
+-------------------------------------------------------------
+ServiceControl Audit Version:       5.0.5+349569b57f59161b9594487f1bde7c7a845f6ba2
+Audit Retention Period:             10.00:00:00
+Forwarding Audit Messages:          False
+ServiceControl Logging Level:       Info
+Transport Customization:            LearningTransport,
+Persistence Customization:          InMemory,
+Persistence:                        InMemory
+-------------------------------------------------------------
+2024-04-26 18:43:43.9359|1|Info|ServiceControl.Transports.TransportManifestLibrary|Found transport manifest for Learning Transport (Non-Production)
