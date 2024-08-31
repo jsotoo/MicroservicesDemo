@@ -11,7 +11,7 @@ namespace Microservices.Resilient.Polly.Client.Console.Infrastructure.Agents.Ord
     using System;
     public class PollyCommand<T>
     {
-        private int maxRetryCount = 6;
+        private int maxRetryCount = 2;
         private double circuitBreakDurationSeconds = 0.2 /* experiment with effect of shorter or longer here, eg: change to = 1, and the fallbackForCircuitBreaker is correctly invoked */ ;
         private int maxExceptionsBeforeBreaking = 4; /* experiment with effect of fewer here, eg change to = 1, and the fallbackForCircuitBreaker is correctly invoked */
         private int maxParallelizations = 2;

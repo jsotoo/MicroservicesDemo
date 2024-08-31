@@ -10,8 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Steeltoe.CircuitBreaker.Hystrix.MetricsStreamCore" Version="3.2.7" />
-    <PackageReference Include="Steeltoe.CircuitBreaker.HystrixCore" Version="3.2.7" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+    <PackageReference Include="Steeltoe.CircuitBreaker.Hystrix.MetricsStreamCore" Version="3.2.8" />
+    <PackageReference Include="Steeltoe.CircuitBreaker.HystrixCore" Version="3.2.8" />
   </ItemGroup>
 
 </Project>

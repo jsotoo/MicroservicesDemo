@@ -33,6 +33,16 @@ services:
       - 7979:7979
     networks:
       - backend
+  rabbitmq:
+    image: rabbitmq:3.13.1-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest    
+    networks:
+      - backend
 networks:
   backend:
     name: backend
