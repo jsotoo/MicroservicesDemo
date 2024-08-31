@@ -1,0 +1,66 @@
+version: '3.7'
+
+services:
+  alertmanager:
+    container_name: alertmanager
+    image: prom/alertmanager:v0.21.0
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    ports:
+      - "9093:9093"
+    networks:
+      - prom-net
+
+  prometheus:
+    image: prom/prometheus:v2.22.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert.rules.yml:/etc/prometheus/alert.rules.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - prom-net
+
+  grafana:
+    image: grafana/grafana:7.2.0
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    networks:
+      - prom-net
+
+  spring-prometheus:
+    container_name: spring-prometheus
+    image: spring-prometheus
+    build:
+      context: ./spring-prometheus
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8080
+    networks:
+      - prom-net
+
+  net-prometheus:
+    container_name: net-prometheus
+    image: net-prometheus
+    build:
+      context: ./net-prometheus
+      dockerfile: Dockerfile
+    ports:
+      - 8082:80
+    networks:
+      - prom-net
+
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025" # SMTP server
+      - "8025:8025" # Web interface
+    networks:
+      - prom-net
+
+
+networks:
+  prom-net:

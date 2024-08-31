@@ -1,0 +1,9 @@
+node.name: es01-test
+cluster.name: es-docker-cluster
+bootstrap.memory_lock: true
+discovery.type: single-node
+network.host: 0.0.0.0
+#xpack.license.self_generated.type: trial
+xpack.security.enabled: true
+xpack.security.authc.api_key.enabled: true
+cluster.routing.allocation.disk.threshold_enabled: false

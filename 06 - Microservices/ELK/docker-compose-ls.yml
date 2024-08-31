@@ -1,0 +1,18 @@
+services:
+######################################################################### elastic search ##################################################################################
+  logstash:
+    container_name: ls01-test
+    image: docker.elastic.co/logstash/logstash:8.13.4
+    ports:
+      - 5044:5044
+      - 28080:28080
+    volumes:
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/conf.d/:/usr/share/logstash/pipeline/:ro
+    networks:
+      - backend
+########################################################## networks #######################################################################################################
+networks:
+  backend:
+    name: backend
+    driver: bridge

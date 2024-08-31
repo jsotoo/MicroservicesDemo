@@ -1,0 +1,17 @@
+services:
+######################################################################### elastic search ##################################################################################
+  apm-server:
+    container_name: apm-server
+    image: docker.elastic.co/apm/apm-server:8.13.4    
+    ports:
+      - 8200:8200      
+    volumes:
+      - ./apm/apm-server.yml:/usr/share/apm-server/apm-server.yml:ro"
+    networks:
+      - backend    
+    restart: on-failure
+########################################################## networks #######################################################################################################
+networks:
+  backend:
+    name: backend
+    driver: bridge

@@ -1,0 +1,27 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+rule_files:
+  - "alert.rules.yml"
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'spring-prometheus'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['spring-prometheus:8080']
+
+  - job_name: 'net-prometheus'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['net-prometheus:80']
+      
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - "alertmanager:9093"

@@ -1,0 +1,16 @@
+apm-server.host: 0.0.0.0:8200
+apm-server.rum.enabled: true
+apm-server.ilm.enabled: auto
+
+apm-server.kibana.enabled: true
+apm-server.kibana.host: kib01-test:5601
+apm-server.kibana.username: kibana_system
+apm-server.kibana.password: pkSI+ngs7*Z+OSEYhprr
+output.elasticsearch.hosts: ["es01-test:9200"]
+output.elasticsearch.username: elastic
+output.elasticsearch.password: elastic
+
+#output.elasticsearch.username: apm_system
+#output.elasticsearch.password: Wj1ZlVeGuBfp8rF2quP3
+
+#bin/elasticsearch-reset-password -u apm_system

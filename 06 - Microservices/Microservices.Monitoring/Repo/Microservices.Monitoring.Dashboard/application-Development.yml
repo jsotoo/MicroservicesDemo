@@ -1,0 +1,19 @@
+ConnectionStrings: 
+    MicroservicesMonitoringDashboardConnection: Data Source=.,1434;Initial Catalog=Microservices.Monitoring.Dashboard;User ID=sa;Password=Password1234;Encrypt=False;TrustServerCertificate=False
+HealthChecksUI: 
+    #HealthChecks:
+    #    -   
+    #        Name: Microservices.Monitoring.Sales.API
+    #        Uri: https://localhost:44337/healthchecks-data-ui
+    #    -   
+    #        Name: Microservices.Monitoring.Products.API
+    #        Uri: https://localhost:44394/healthchecks-data-ui
+    Webhooks:
+        -
+            Name:
+            Uri:
+            Payload:
+            RestoredPayload:    
+    EvaluationTimeInSeconds: 10
+    MinimumSecondsBetweenFailureNotifications: 60
+  

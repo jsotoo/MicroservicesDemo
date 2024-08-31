@@ -1,0 +1,23 @@
+groups:
+
+- name: spring-prometheus
+  rules:
+  - alert: ServiceSpringPrometheusDown
+    expr: up{job="spring-prometheus"} == 0
+    for: 5s
+    labels:
+      severity: "critical"
+    annotations:
+      summary: "the service spring-prometheus is down"
+      description: "The scraping of Prometheus for the spring-prometheus service has failed for more than 5 seconds."
+
+- name: net-prometheus
+  rules:
+  - alert: ServiceNetPrometheusDown
+    expr: up{job="net-prometheus"} == 0
+    for: 5s
+    labels:
+      severity: "critical"
+    annotations:
+      summary: "the service net-prometheus is down"
+      description: "The scraping of Prometheus for the net-prometheus service has failed for more than 5 seconds."

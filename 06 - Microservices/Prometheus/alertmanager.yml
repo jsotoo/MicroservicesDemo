@@ -1,0 +1,18 @@
+global:
+  smtp_smarthost: 'mailhog:1025'
+  smtp_from: 'admin@local.com'
+  smtp_require_tls: false
+
+route:
+  group_wait : 0s
+  group_interval: 1s
+  group_by: ['alertname']
+  receiver: 'team-X-emails'
+
+receivers:
+- name: 'team-X-emails'
+  email_configs:
+  - to: 'client@external.com'
+    from: 'admin@local.com'
+    smarthost: mailhog:1025
+    require_tls: false

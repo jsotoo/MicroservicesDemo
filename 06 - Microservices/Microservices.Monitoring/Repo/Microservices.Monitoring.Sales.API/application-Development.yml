@@ -1,0 +1,3 @@
+ConnectionStrings: 
+    MicroservicesMonitoringConnection: Data Source=.,1434;Initial Catalog=Microservices.Monitoring;User ID=sa;Password=Password1234;Encrypt=False;TrustServerCertificate=False
+  
