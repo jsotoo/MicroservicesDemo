@@ -37,6 +37,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.UseHystrixMetricsStream(); // Add this line to map the Hystrix stream
-
 app.Run();
