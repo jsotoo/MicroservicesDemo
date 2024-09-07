@@ -5,7 +5,7 @@ apm-server.ilm.enabled: auto
 apm-server.kibana.enabled: true
 apm-server.kibana.host: kib01-test:5601
 apm-server.kibana.username: kibana_system
-apm-server.kibana.password: pkSI+ngs7*Z+OSEYhprr
+apm-server.kibana.password: qBG65t8cBeqM5vqLPRUj
 output.elasticsearch.hosts: ["es01-test:9200"]
 output.elasticsearch.username: elastic
 output.elasticsearch.password: elastic

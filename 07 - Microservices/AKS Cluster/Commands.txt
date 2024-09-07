@@ -40,10 +40,10 @@ az aks create \
     --node-count 3 #default Node count is 3
 
 #En windows
-az aks create --resource-group "Kubernetes-Cloud" --generate-ssh-keys --name CSCluster --node-count 3
+az aks create --resource-group "Kubernetes-Cloud" --generate-ssh-keys --name CSCluster --node-count 1
 
 #On windows & monitoring
-az aks create --resource-group "Kubernetes-Cloud" --generate-ssh-keys --name CSCluster --node-count 3 --enable-addons monitoring
+az aks create --resource-group "Kubernetes-Cloud" --generate-ssh-keys --name CSCluster --node-count 1 --enable-addons monitoring
 
 #If needed, we can download and install kubectl on our local system.
 az aks install-cli

@@ -4,9 +4,9 @@ metadata:
   labels:
     app: hello-world
   name: hello-world
-  namespace: develop
+  #namespace: dev
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: hello-world    

@@ -3,7 +3,8 @@ kind: Route
 metadata:
   name: httpd-route
 spec:
-  host: web-server.apps-crc.testing
+  #host: web-server.apps-crc.testing
+  host: web-server.apps.sandbox-m2.ll9k.p1.openshiftapps.com
   to:
     kind: Service
     name: httpd-service
