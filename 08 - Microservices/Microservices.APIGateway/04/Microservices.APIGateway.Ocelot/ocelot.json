@@ -1,0 +1,56 @@
+{
+  "Routes": [
+    //Products
+    {
+      "DownstreamPathTemplate": "/api/products",
+      "DownstreamScheme": "http",
+      "ServiceName": "Microservices.APIGateway.Product.API",
+      "UpstreamPathTemplate": "/gateway/products",
+      "UpstreamHttpMethod": ["GET"],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "ApiSecurityAuthenticationScheme"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/products/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "Microservices.APIGateway.Product.API",
+      "UpstreamPathTemplate": "/gateway/products/{everything}",
+      "UpstreamHttpMethod": ["GET"],      
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "ApiSecurityAuthenticationScheme"
+      }
+    },
+    //Sales
+    {
+      "DownstreamPathTemplate": "/api/sales",
+      "DownstreamScheme": "http",
+      "ServiceName": "Microservices.APIGateway.Sale.API",
+      "UpstreamPathTemplate": "/gateway/sales",
+      "UpstreamHttpMethod": ["GET"],      
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "ApiSecurityAuthenticationScheme"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/sales/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "Microservices.APIGateway.Sale.API",
+      "UpstreamPathTemplate": "/gateway/sales/{everything}",
+      "UpstreamHttpMethod": ["GET"],      
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "ApiSecurityAuthenticationScheme"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "UseServiceDiscovery": true,
+    "ServiceDiscoveryProvider": {
+      //"Host": "microservices.apigateway.discoveryservice",
+      "Host": "discovery-service",
+      "Port": 8761,
+      "Type": "Eureka"
+    }
+  }
+}
