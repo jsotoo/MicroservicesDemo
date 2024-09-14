@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+  namespace: erick-arostegui-cunz-dev
+  labels:
+    app: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: scorpius8/microservices.apigateway.auth.api:latest
+          ports:
+            - containerPort: 8080
+            
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+  namespace: erick-arostegui-cunz-dev
+  labels:
+    app: auth
+spec:
+  selector:
+    app: auth
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: auth-route
+  namespace: erick-arostegui-cunz-dev
+  labels:
+    app: auth
+spec:
+  host: auth.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+  to:
+    kind: Service
+    name: auth-service
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge

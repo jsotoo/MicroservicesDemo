@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  namespace: erick-arostegui-cunz-dev
+  labels:
+    app: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+        - name: gateway
+          image: scorpius8/microservices.apigateway.ocelot:latest
+          ports:
+            - containerPort: 8080
+            
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-service
+  namespace: erick-arostegui-cunz-dev
+  labels:
+    app: gateway
+spec:
+  selector:
+    app: gateway
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: gateway-route
+  namespace: erick-arostegui-cunz-dev
+  labels:
+    app: gateway
+spec:
+  host: gateway.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+  to:
+    kind: Service
+    name: gateway-service
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge

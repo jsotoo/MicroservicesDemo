@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products
+  namespace: erick-arostegui-cunz-dev
+  labels:
+    app: products
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: products
+  template:
+    metadata:
+      labels:
+        app: products
+    spec:
+      containers:
+        - name: products
+          image: scorpius8/microservices.apigateway.product.api:latest
+          ports:
+            - containerPort: 8080
+            
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: products-service
+#  namespace: erick-arostegui-cunz-dev
+#  labels:
+#    app: products
+#spec:
+#  selector:
+#    app: products
+#  ports:
+#    - protocol: TCP
+#      port: 8080
+#      targetPort: 8080
+
+#---
+#apiVersion: route.openshift.io/v1
+#kind: Route
+#metadata:
+#  name: products-route
+#  namespace: erick-arostegui-cunz-dev
+#  labels:
+#    app: products
+#spec:
+#  host: products.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+#  to:
+#    kind: Service
+#    name: products-service
+#  port:
+#    targetPort: 8080
+#  tls:
+#    termination: edge

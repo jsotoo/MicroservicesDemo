@@ -1,0 +1,30 @@
+Rename tag image
+================
+docker tag microservices.apigateway.client.angular scorpius8/microservices.apigateway.client.angular:latest
+docker tag microservices.apigateway.product.api scorpius8/microservices.apigateway.product.api:latest
+docker tag microservices.apigateway.sale.api scorpius8/microservices.apigateway.sale.api:latest
+docker tag microservices.apigateway.ocelot scorpius8/microservices.apigateway.ocelot:latest
+docker tag microservices.apigateway.auth.api scorpius8/microservices.apigateway.auth.api:latest
+docker tag microservices.apigateway.discoveryservice scorpius8/microservices.apigateway.discoveryservice:latest
+
+Login Image registry
+====================
+docker login -u $(oc whoami) -p $(oc whoami -t) default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+
+Push 
+====
+docker push scorpius8/microservices.apigateway.client.angular:latest
+docker push scorpius8/microservices.apigateway.product.api:latest
+docker push scorpius8/microservices.apigateway.sale.api:latest
+docker push scorpius8/microservices.apigateway.ocelot:latest
+docker push scorpius8/microservices.apigateway.auth.api:latest
+docker push scorpius8/microservices.apigateway.discoveryservice:latest
+
+Generate Image stream
+=====================
+oc create imagestream microservices.apigateway.client.angular -n erick-arostegui-cunz-dev
+oc create imagestream microservices.apigateway.product.api -n erick-arostegui-cunz-dev
+oc create imagestream microservices.apigateway.sale.api -n erick-arostegui-cunz-dev
+oc create imagestream microservices.apigateway.ocelot -n erick-arostegui-cunz-dev
+oc create imagestream microservices.apigateway.auth.api -n erick-arostegui-cunz-dev
+oc create imagestream microservices.apigateway.discoveryservice -n erick-arostegui-cunz-dev

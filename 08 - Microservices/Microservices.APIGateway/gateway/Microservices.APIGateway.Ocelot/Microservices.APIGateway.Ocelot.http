@@ -1,0 +1,6 @@
+@Microservices.APIGateway.Ocelot_HostAddress = http://localhost:5236
+
+GET {{Microservices.APIGateway.Ocelot_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
