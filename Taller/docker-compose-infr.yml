@@ -144,7 +144,7 @@ services:
       - ./app/infrastructure/obs/microservices.demo.prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./app/infrastructure/obs/microservices.demo.prometheus/data:/data
     ports:
-      - "9090:9090"
+      - "9091:9090"
     networks:
       - backend
     restart: on-failure
