@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>b9e3469f-cb9a-4632-baad-a4f328389541</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DynamicExpresso.Core" Version="2.16.1" />
+    <PackageReference Include="FluentValidation" Version="11.9.2" />
+    <PackageReference Include="GlobalExceptionHandler" Version="4.0.2" />
+	<PackageReference Include="Jaeger.Core" Version="1.0.3" />
+	<PackageReference Include="Jaeger.Senders.Thrift" Version="1.0.3" />
+    <PackageReference Include="Marten" Version="7.19.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
+	<PackageReference Include="Elastic.Apm.NetCoreAll" Version="1.27.1" />
+	<PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.8.1" />
+	<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.8.1" />
+	<PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.8.1" />
+	<PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.8.1" />
+	<PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.8.0-beta.1" />
+	<PackageReference Include="Serilog" Version="4.0.0" />
+	<PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+	<PackageReference Include="Serilog.Sinks.Http" Version="9.0.0" />
+    <PackageReference Include="Steeltoe.Discovery.Eureka" Version="3.2.7" />
+    <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="3.2.7" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+</Project>

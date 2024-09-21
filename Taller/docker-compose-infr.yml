@@ -1,0 +1,189 @@
+
+services:
+########################################################## microservices.demo.discoveryserver #############################################################################
+  microservices.demo.discoveryserver:
+    image: ${DOCKER_REGISTRY-}microservicesdemodiscoveryserver
+    container_name: Microservices.Demo.DiscoveryServer    
+    ports:
+       - 8761:8761
+    environment:
+       - OTEL_SERVICE_NAME=Microservices.Demo.DiscoveryServer
+       - OTEL_EXPORTER_OTLP_ENDPOINT=http://microservices.demo.jaeger:4317
+    build:
+      context: app/Infrastructure/Microservices.Demo.DiscoveryServer
+      dockerfile: Dockerfile
+    networks:
+      - backend
+########################################################## microservices.demo.configserver ################################################################################
+  microservices.demo.configserver:
+    image: ${DOCKER_REGISTRY-}microservicesdemoconfigserver
+    container_name: Microservices.Demo.ConfigServer    
+    ports:
+       - 8889:8889
+    environment:
+       - OTEL_SERVICE_NAME=Microservices.Demo.ConfigServer
+       - OTEL_EXPORTER_OTLP_ENDPOINT=http://microservices.demo.jaeger:4317
+    build:
+      context: app/Infrastructure/Microservices.Demo.ConfigServer
+      dockerfile: Dockerfile
+    networks:
+      - backend
+########################################################## microservices.demo.rabbitmq ####################################################################################
+  microservices.demo.rabbitmq:
+    image: rabbitmq:3.13.1-management
+    container_name: Microservices.Demo.Rabbitmq    
+    ports:
+       - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin    
+    networks:
+      - backend
+########################################################## microservices.demo.client.web.apigateway ######################################################################
+  microservices.demo.client.web.apigateway:
+    image: ${DOCKER_REGISTRY-}microservicesdemoclientwebapigateway
+    container_name: Microservices.Demo.Client.Web.ApiGateway    
+    environment:      
+      - ASPNETCORE_URLS=http://::80
+    ports:
+      - 44399:80
+    build:
+      context: app/Infrastructure/Microservices.Demo.Client.Web.ApiGateway
+      dockerfile: Dockerfile
+    networks:
+      - backend
+    restart: on-failure
+########################################################## microservices.demo.auth.api ###################################################################################
+  microservices.demo.auth.api:
+    image: ${DOCKER_REGISTRY-}microservicesdemoauthapi
+    container_name: Microservices.Demo.Auth.Api    
+    environment:
+      - ASPNETCORE_URLS=http://::80
+    ports:
+      - 44398:80      
+    build:
+      context: app/Infrastructure/Microservices.Demo.Auth.API
+      dockerfile: Dockerfile
+    networks:
+      - backend
+    restart: on-failure
+######################################################################### elastic search ##################################################################################
+##http://localhost:9200/_cat/nodes?v=true&pretty
+##http://localhost:9200/_cluster/health?pretty
+  microservices.demo.elasticsearch:
+    container_name: microservices.demo.elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    ports:
+      - 9200:9200 
+      - 9300:9300
+    environment:      
+      - ELASTIC_PASSWORD=elastic      
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ulimits:
+      memlock:
+        hard: -1
+        soft: -1    
+    volumes:
+      - ./app/infrastructure/elk/microservices.demo.elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./app/infrastructure/elk/microservices.demo.elasticsearch/es-data:/usr/share/elasticsearch/data
+    networks:
+      - backend  
+################################################################################# kibana ##################################################################################      
+  microservices.demo.kibana:
+    container_name: microservices.demo.kibana
+    image: docker.elastic.co/kibana/kibana:8.13.4
+    ports:
+      - 5601:5601    
+    volumes:
+      - ./app/infrastructure/elk/microservices.demo.kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    networks:
+      - backend
+    depends_on:
+      - microservices.demo.elasticsearch    
+######################################################################### logstash ##################################################################################
+  microservices.demo.logstash:
+    container_name: microservices.demo.logstash
+    image: docker.elastic.co/logstash/logstash:8.13.4
+    ports:
+      - 5044:5044
+      - 28080:28080
+    volumes:
+      - ./app/infrastructure/elk/microservices.demo.logstash/conf.d/:/usr/share/logstash/pipeline/:ro
+      - ./app/infrastructure/elk/microservices.demo.logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+    networks:
+      - backend
+    depends_on:
+      - microservices.demo.elasticsearch
+    restart: on-failure
+######################################################################### APM ##################################################################################
+  microservices.demo.apm-server:
+    container_name: microservices.demo.apm-server    
+    image: docker.elastic.co/apm/apm-server:8.13.4
+    ports:
+      - 8200:8200  
+    volumes:
+      - ./app/infrastructure/elk/microservices.demo.apm-server/apm-server.yml:/usr/share/apm-server/apm-server.yml:ro
+    networks:
+      - backend
+    depends_on:
+      - microservices.demo.elasticsearch
+    restart: on-failure
+######################################################################### prometheus ################################################################################
+  microservices.demo.prometheus:
+    container_name: microservices.demo.prometheus
+    image: prom/prometheus:v2.50.1
+    command:
+        - '--web.enable-remote-write-receiver'
+        - '--web.enable-lifecycle'
+        - '--config.file=/etc/prometheus/prometheus.yml'
+        - '--storage.tsdb.retention.time=15d'    
+        - '--storage.tsdb.path=/data'
+        #- '--web.console.libraries=/etc/prometheus/console_libraries'
+        #- '--web.console.templates=/etc/prometheus/consoles'        
+    volumes:
+      - ./app/infrastructure/obs/microservices.demo.prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./app/infrastructure/obs/microservices.demo.prometheus/data:/data
+    ports:
+      - "9090:9090"
+    networks:
+      - backend
+    restart: on-failure
+######################################################################### jaeger ##################################################################################
+  microservices.demo.jaeger:
+    container_name: microservices.demo.jaeger
+    image: jaegertracing/all-in-one:1.52
+    ports:            
+      - 16686:16686
+      - 4317:4317 
+    environment:      
+      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
+      - COLLECTOR_OTLP_ENABLED=true
+      # - SPAN_STORAGE_TYPE=badger
+      # - BADGER_EPHEMERAL=true
+      - METRICS_STORAGE_TYPE=prometheus
+      - PROMETHEUS_SERVER_URL=http://microservices.demo.prometheus:9090
+      - PROMETHEUS_QUERY_SUPPORT_SPANMETRICS_CONNECTOR=true
+      - PROMETHEUS_QUERY_DURATION_UNIT=ms
+      - PROMETHEUS_QUERY_NORMALIZE_CALLS=true
+      - PROMETHEUS_QUERY_NORMALIZE_DURATION=true
+    networks:
+      - backend    
+    restart: on-failure
+######################################################################### otel-collector ###########################################################################
+  microservices.demo.otel-collector:
+    container_name: microservices.demo.otel-collector
+    image: otel/opentelemetry-collector-contrib:0.96.0    
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./app/infrastructure/obs/microservices.demo.otel-collector/otel-collector-config.yaml:/etc/otel-collector-config.yaml:ro
+    depends_on:
+      - microservices.demo.jaeger
+      - microservices.demo.prometheus
+    networks:
+      - backend
+    restart: on-failure
+########################################################## networks #######################################################################################################
+networks:
+  backend:
+    name: backend
+    driver: bridge

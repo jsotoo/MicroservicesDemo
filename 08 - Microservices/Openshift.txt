@@ -1,0 +1,7 @@
+oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}'
+
+apps.sandbox-m2.ll9k.p1.openshiftapps.com
+
+default-route-openshift-image-registry.apps.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+
+docker login -u $(oc whoami) -p $(oc whoami -t) apps.sandbox-m2.ll9k.p1.openshiftapps.com

@@ -1,0 +1,54 @@
+receivers: 
+  otlp:
+    protocols:
+      grpc:  # Puerto 4317 para OTLP/gRPC
+        endpoint: "0.0.0.0:4317"
+      http:  # Puerto 4318 para OTLP/HTTP
+        endpoint: "0.0.0.0:4318"
+  jaeger:
+    protocols:
+      thrift_http:
+        endpoint: "0.0.0.0:14278"
+
+processors:  
+  batch:
+
+exporters:
+  otlp/jaeger:
+    endpoint: "http://microservices.demo.jaeger:4317"
+    tls:
+      insecure: true
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+  prometheusremotewrite:
+    endpoint: "http://microservices.demo.prometheus:9090/api/v1/write"
+  logging:
+    loglevel: debug
+  # debug:
+  #   verbosity: detailed  
+  
+connectors:
+  spanmetrics:    
+
+service:
+  pipelines:
+    traces:
+      receivers: 
+        - otlp        
+      processors:        
+        - batch      
+      exporters:         
+        - otlp/jaeger
+        - spanmetrics
+    metrics/spanmetrics:
+      receivers: 
+        - spanmetrics
+      exporters: 
+        - prometheus
+    metrics:
+      receivers: 
+        - otlp
+      processors:        
+        - batch      
+      exporters: 
+        - prometheusremotewrite
