@@ -767,3 +767,5 @@ dist
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,angular,node,csharp
+
+/Taller/app/Infrastructure/elk/Microservices.Demo.Elasticsearch/es-data/*
