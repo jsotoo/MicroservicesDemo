@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/mssql/server:2019-latest AS sqlserver
+FROM mcr.microsoft.com/mssql/server:2022-latest AS sqlserver
 ENV SA_PASSWORD=Password1234
 ENV ACCEPT_EULA=Y
 COPY ["db/Microservices.Demo.Policy.DB/Docker/entrypoint.sh", "/var/opt/sqlserver/entrypoint.sh"]
