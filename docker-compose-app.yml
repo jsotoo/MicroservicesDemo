@@ -1,0 +1,59 @@
+services:
+########################################################## microservices.demo.product.api ################################################################################
+  microservices.demo.product.api:
+    image: ${DOCKER_REGISTRY-}microservicesdemoproductapi
+    #container_name: Microservices.Demo.Product.Api
+    deploy:
+      replicas: 3
+    environment:      
+      - ASPNETCORE_URLS=http://::80
+    build:
+      context: .
+      dockerfile: app/Domain/Microservices.Demo.Product.API/Dockerfile
+    networks:
+      - backend
+    restart: on-failure
+########################################################## microservices.demo.pricing.api ################################################################################
+  microservices.demo.pricing.api:
+    image: ${DOCKER_REGISTRY-}microservicesdemopricingapi
+    #container_name: Microservices.Demo.Pricing.Api    
+    deploy:
+      replicas: 3
+    environment:      
+      - ASPNETCORE_URLS=http://::80    
+    build:
+      context: .
+      dockerfile: app/Domain/Microservices.Demo.Pricing.API/Dockerfile
+    networks:
+      - backend
+    restart: on-failure
+########################################################## microservices.demo.policy.api #################################################################################
+  microservices.demo.policy.api:
+    image: ${DOCKER_REGISTRY-}microservicesdemopolicyapi
+    #container_name: Microservices.Demo.Policy.Api    
+    deploy:
+      replicas: 3
+    environment:      
+      - ASPNETCORE_URLS=http://::80    
+    build:
+      context: .
+      dockerfile: app/Domain/Microservices.Demo.Policy.API/Dockerfile
+    networks:
+      - backend
+    restart: on-failure
+########################################################## Client Angular #################################################################################
+  microservices.demo.client.web:
+    container_name: microservices.demo.client.web
+    image: microservices.demo.client.web
+    build:
+      context: app/Client/microservices.demo.client.web
+      dockerfile: Dockerfile    
+    ports:
+      - 8081:80
+    networks:
+      - backend   
+########################################################## networks #######################################################################################################
+networks:
+  backend:
+    name: backend
+    driver: bridge
