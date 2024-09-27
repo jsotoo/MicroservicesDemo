@@ -7,7 +7,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Scorpius86/Microservices-Config-Repository.git
+          uri: https://github.com/jsotoo/Microservices-Config-Repository
           search-paths:
             - '{application}'
           defaultLabel: master

@@ -51,9 +51,11 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Microservices.Demo.Product.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "obs", "obs", "{DD40539D-075A-4194-A640-E8088188B9A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.Demo.Prometheus", "app\Infrastructure\obs\Microservices.Demo.Prometheus\Microservices.Demo.Prometheus.csproj", "{1A0AB83F-5C33-4C66-A2AB-073F754F0A99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservices.Demo.Prometheus", "app\Infrastructure\obs\Microservices.Demo.Prometheus\Microservices.Demo.Prometheus.csproj", "{1A0AB83F-5C33-4C66-A2AB-073F754F0A99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.Demo.Otel-Collector", "app\Infrastructure\obs\Microservices.Demo.Otel-Collector\Microservices.Demo.Otel-Collector.csproj", "{81592A39-4921-45B5-82B5-2FA649ADB936}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservices.Demo.Otel-Collector", "app\Infrastructure\obs\Microservices.Demo.Otel-Collector\Microservices.Demo.Otel-Collector.csproj", "{81592A39-4921-45B5-82B5-2FA649ADB936}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservices.Demo.Report.API", "..\Microservices.Demo.Report.API\Microservices.Demo.Report.API.csproj", "{A39D4E5D-E932-4555-9B28-4150941D097C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +145,10 @@ Global
 		{81592A39-4921-45B5-82B5-2FA649ADB936}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81592A39-4921-45B5-82B5-2FA649ADB936}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81592A39-4921-45B5-82B5-2FA649ADB936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39D4E5D-E932-4555-9B28-4150941D097C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39D4E5D-E932-4555-9B28-4150941D097C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39D4E5D-E932-4555-9B28-4150941D097C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39D4E5D-E932-4555-9B28-4150941D097C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,6 +177,7 @@ Global
 		{DD40539D-075A-4194-A640-E8088188B9A8} = {19C434A4-DFBD-496D-841D-A7BEBB57E020}
 		{1A0AB83F-5C33-4C66-A2AB-073F754F0A99} = {DD40539D-075A-4194-A640-E8088188B9A8}
 		{81592A39-4921-45B5-82B5-2FA649ADB936} = {DD40539D-075A-4194-A640-E8088188B9A8}
+		{A39D4E5D-E932-4555-9B28-4150941D097C} = {F2242760-C6AA-456D-A711-9E88C62A0F47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41534AA2-B3BB-4CE8-8AC2-557E277155D4}
