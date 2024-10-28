@@ -1,0 +1,16 @@
+apm-server.host: 0.0.0.0:8200
+apm-server.rum.enabled: true
+apm-server.ilm.enabled: auto
+
+apm-server.kibana.enabled: true
+apm-server.kibana.host: microservices.demo.kibana:5601
+apm-server.kibana.username: kibana_system
+apm-server.kibana.password: _sUKLhu0j9I=swOoQO45
+output.elasticsearch.hosts: ["microservices.demo.elasticsearch:9200"]
+output.elasticsearch.username: elastic
+output.elasticsearch.password: elastic
+
+#output.elasticsearch.username: apm_system
+#output.elasticsearch.password: MIPqf_Y5gUViVNfGP9k+
+
+#bin/elasticsearch-reset-password -u apm_system
