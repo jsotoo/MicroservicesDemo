@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2>Reporte de Pólizas</h2>
+    </div>
+
+    <div class="card-body">
+      <!-- Loading Spinner -->
+      <div *ngIf="loading" class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="error" class="alert alert-danger">
+        {{ error }}
+      </div>
+
+      <!-- Report Table -->
+      <div *ngIf="!loading && !error" class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Número de Póliza</th>
+              <th>Titular</th>
+              <th>Codigo producto</th>
+              <th>Nombre producto</th>
+              <th>login</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of reports">
+              <td>{{ report.policyNumber }}</td>
+              <td>{{ report.policyHolder }}</td>
+              <td>{{ report.productCode }}</td>
+              <td>{{ report.productName }}</td>
+              <td>{{ report.agentLogin}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- No Data Message -->
+      <div *ngIf="!loading && !error && reports.length === 0" class="alert alert-info">
+        No hay datos disponibles
+      </div>
+    </div>
+  </div>
+</div>

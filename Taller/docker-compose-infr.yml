@@ -20,6 +20,8 @@ services:
     container_name: Microservices.Demo.ConfigServer    
     ports:
        - 8889:8889
+    depends_on:
+      - microservices.demo.discoveryserver
     environment:
        - OTEL_SERVICE_NAME=Microservices.Demo.ConfigServer
        - OTEL_EXPORTER_OTLP_ENDPOINT=http://microservices.demo.jaeger:4317
@@ -60,7 +62,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://::80
     ports:
-      - 44398:80      
+      - 44397:80      
     build:
       context: app/Infrastructure/Microservices.Demo.Auth.API
       dockerfile: Dockerfile

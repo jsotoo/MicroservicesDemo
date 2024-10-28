@@ -1,6 +1,6 @@
 ﻿http.host: 0.0.0.0
 xpack.monitoring.elasticsearch.hosts: http://microservices.demo.elasticsearch:9200
 xpack.monitoring.elasticsearch.username: logstash_system
-xpack.monitoring.elasticsearch.password: yyI0DOMuWSzVN62vuTgn
+xpack.monitoring.elasticsearch.password: q*XEKIf95mjSyx90ZNjY
 
 #bin/elasticsearch-reset-password -u logstash_system

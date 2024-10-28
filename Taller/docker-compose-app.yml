@@ -4,7 +4,7 @@ services:
     image: ${DOCKER_REGISTRY-}microservicesdemoproductapi
     #container_name: Microservices.Demo.Product.Api
     deploy:
-      replicas: 3
+      replicas: 1
     environment:      
       - ASPNETCORE_URLS=http://::80
     build:
@@ -18,7 +18,7 @@ services:
     image: ${DOCKER_REGISTRY-}microservicesdemopricingapi
     #container_name: Microservices.Demo.Pricing.Api    
     deploy:
-      replicas: 3
+      replicas: 1
     environment:      
       - ASPNETCORE_URLS=http://::80    
     build:
@@ -32,12 +32,27 @@ services:
     image: ${DOCKER_REGISTRY-}microservicesdemopolicyapi
     #container_name: Microservices.Demo.Policy.Api    
     deploy:
-      replicas: 3
+      replicas: 1
     environment:      
       - ASPNETCORE_URLS=http://::80    
     build:
       context: .
       dockerfile: app/Domain/Microservices.Demo.Policy.API/Dockerfile
+    networks:
+      - backend
+    restart: on-failure
+
+ ########################################################## microservices.demo.policy.api #################################################################################
+  microservices.demo.report.api:
+    image: ${DOCKER_REGISTRY-}microservicesdemoreportapi
+    #container_name: Microservices.Demo.Policy.Api    
+    deploy:
+      replicas: 1
+    environment:      
+      - ASPNETCORE_URLS=http://::80    
+    build:
+      context: .
+      dockerfile: app/Domain/Microservices.Demo.Report.API/Dockerfile
     networks:
       - backend
     restart: on-failure

@@ -7,10 +7,13 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Scorpius86/Microservices-Config-Repository.git
+          uri: https://github.com/jsotoo/Microservices-Config-Repository.git
           search-paths:
+            - '*'
             - '{application}'
-          defaultLabel: master
+          defaultLabel: main
+          clone-on-start: true
+          force-pull: true
 eureka:
   instance:
     appName: Microservices.Demo.ConfigServer

@@ -5,7 +5,7 @@ apm-server.ilm.enabled: auto
 apm-server.kibana.enabled: true
 apm-server.kibana.host: microservices.demo.kibana:5601
 apm-server.kibana.username: kibana_system
-apm-server.kibana.password: CWE_T4QuJ_aSf=SiepgD
+apm-server.kibana.password: Eo5BWcZ*Iaqw_re*rLUh
 output.elasticsearch.hosts: ["microservices.demo.elasticsearch:9200"]
 output.elasticsearch.username: elastic
 output.elasticsearch.password: elastic

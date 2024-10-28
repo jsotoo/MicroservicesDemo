@@ -11,5 +11,7 @@ namespace Microservices.Demo.Policy.API.Infrastructure.Data.Repository
         void Add(Policy policy);
 
         Task<Policy> WithNumber(string number);
+
+        Task<IEnumerable<Policy>> GetAll();
     }
 }

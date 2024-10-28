@@ -197,7 +197,7 @@ services:
     image: ${DOCKER_REGISTRY-}microservicesdemoproductapi
     #container_name: Microservices.Demo.Product.Api
     deploy:
-      replicas: 3
+      replicas: 1
     environment:      
       - ASPNETCORE_URLS=http://::80    
     build:
@@ -211,7 +211,7 @@ services:
     image: ${DOCKER_REGISTRY-}microservicesdemopricingapi
     #container_name: Microservices.Demo.Pricing.Api    
     deploy:
-      replicas: 3
+      replicas: 1
     environment:      
       - ASPNETCORE_URLS=http://::80    
     build:
@@ -225,7 +225,7 @@ services:
     image: ${DOCKER_REGISTRY-}microservicesdemopolicyapi
     #container_name: Microservices.Demo.Policy.Api    
     deploy:
-      replicas: 3
+      replicas: 1
     environment:      
       - ASPNETCORE_URLS=http://::80    
     build:

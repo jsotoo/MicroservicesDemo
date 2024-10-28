@@ -25,6 +25,14 @@
             return await _policyDbContext.Policies.Where(p => p.Number == number).FirstOrDefaultAsync();
             
         }
+
+        public async Task<IEnumerable<Policy>> GetAll()
+        {
+            return await _policyDbContext.Policies.ToListAsync();
+
+        }
+
+
     }
 }
     
